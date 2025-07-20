@@ -1,0 +1,22 @@
+# Java build
+/bin/
+/build/
+/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE files
+*.iml
+.idea/
+*.ipr
+*.iws
+*.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Data files
+/data/ 
