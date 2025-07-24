@@ -12,4 +12,9 @@ public class CompetenceTechnique extends Competence {
     public void setDomaineTechnique(String domaineTechnique) { this.domaineTechnique = domaineTechnique; }
     public List<String> getCertifications() { return certifications; }
     public void setCertifications(List<String> certifications) { this.certifications = certifications; }
+    
+    // Méthode pour ajouter une certification
+    public void ajouterCertification(String certification) {
+        certifications.add(certification);
+    }
 } 

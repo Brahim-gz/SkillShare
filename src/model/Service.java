@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Scanner;
 import java.io.Serializable;
 
 public class Service implements Serializable {
@@ -20,6 +21,65 @@ public class Service implements Serializable {
         this.fournisseur = fournisseur;
         this.duree = duree;
         this.statut = statut;
+    }
+
+    public static Service creerService(Scanner sc, Etudiant fournisseur, int id) {
+        System.out.println("--- Proposer un service ---");
+        System.out.print("Titre : ");
+        String titre = sc.nextLine();
+        System.out.print("Description : ");
+        String description = sc.nextLine();
+        
+        int cout = 0;
+        boolean coutValide = false;
+        do {
+            System.out.print("Coût en crédits : ");
+            try {
+                cout = Integer.parseInt(sc.nextLine());
+                if (cout > 0) {
+                    coutValide = true;
+                } else {
+                    System.out.println("Le coût doit être supérieur à 0.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Veuillez entrer un nombre valide.");
+            }
+        } while (!coutValide);
+        
+        int duree = 0;
+        boolean dureeValide = false;
+        do {
+            System.out.print("Durée estimée (en heures) : ");
+            try {
+                duree = Integer.parseInt(sc.nextLine());
+                if (duree > 0) {
+                    dureeValide = true;
+                } else {
+                    System.out.println("La durée doit être supérieure à 0.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Veuillez entrer un nombre valide.");
+            }
+        } while (!dureeValide);
+        
+        String statut = "en attente";
+        return new Service(id, titre, description, cout, fournisseur, duree, statut);
+    }
+
+    public boolean modifierService() {
+        if (!statut.equals("en attente")) {
+            System.out.println("Impossible de modifier un service qui n'est pas en attente.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean supprimerService() {
+        if (!statut.equals("en attente")) {
+            System.out.println("Impossible de supprimer un service qui n'est pas en attente.");
+            return false;
+        }
+        return true;
     }
 
     public int getId() { return id; }

@@ -10,4 +10,6 @@ public abstract class Personne implements Serializable {
     protected String email;
     protected String motDePasse;
 
+    public abstract boolean sAuthentifier(String email, String motDePasse);
+    public abstract void modifierProfil();
 } 
